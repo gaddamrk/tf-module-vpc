@@ -7,31 +7,6 @@ resource "aws_vpc" "main" {
 }
 
 
-resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.main.id
-
-  tags       = merge(
-    local.common_tags,
-    { Name = "${var.env}-igw" }
-  )
-}
-
-
-resource "aws_eip" "ngw-eip" {
-  vpc =  true
-}
-
-resource "aws_nat_gateway" "ngw" {
-  allocation_id = aws_eip.ngw-eip.id
-  subnet_id     = var.public_subnet_ids[0]
-
-  tags       = merge(
-    local.common_tags,
-    { Name = "${var.env}-ngw" }
-  )
-
-}
-
 resource "aws_vpc_peering_connection" "peer" {
   peer_owner_id = data.aws_caller_identity.current.account_id
   peer_vpc_id   = var.default_vpc_id
