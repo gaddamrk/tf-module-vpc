@@ -8,7 +8,7 @@ module "subnets" {
   for_each = var.subnets
   cidr_block = each.value.cidr_block
   name = each.value.name
-  internet_gw = each.value.internet_gw ? aws_internet_gateway.igw.id : null
+  internet_gw = lookup(each.value, "internet_gw", false) ? aws_internet_gateway.igw.id : null
 #  nat_gw = lookup(each.value, "nat_gw", false)
 
   vpc_id = aws_vpc.main.id  //these are just local which are created
