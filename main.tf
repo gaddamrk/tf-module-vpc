@@ -7,7 +7,7 @@ resource "aws_vpc" "main" {
 }
 
 
-resource "" "igw" {
+resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 
   tags       = merge(
