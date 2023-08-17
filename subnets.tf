@@ -1,10 +1,3 @@
-#module "subnets" {
-#  source =
-#
-
-#
-//i am just trying to segrigate the things
-
 module "public_subnets" {
   source =  "./subnets"
     availability_zone = var.availability_zone
