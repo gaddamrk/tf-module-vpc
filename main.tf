@@ -51,5 +51,3 @@ resource "aws_eip" "ngw-eip" {
 #  )
 #
 #}
-
-//create ec2
